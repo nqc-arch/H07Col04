@@ -7,6 +7,7 @@ package equipoBaloncesto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
@@ -17,7 +18,7 @@ import java.util.function.Predicate;
 public class Equipo {
 
     /**/
-    private Set<Jugador> jugadores;
+    private SortedSet<Jugador> jugadores;
 
     /*CONSTRUCTOR*/
     public Equipo() {
@@ -30,11 +31,12 @@ public class Equipo {
     }
 
     /*SET*/
-    public void setListaJugadores(Set<Jugador> jugadores) {
+    public void setListaJugadores(SortedSet<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
 
     /*METODOS*/
+    //insertarJugador():
     public void insertarJugador(Jugador j) {
         if (!jugadores.add(j)) {
             System.out.println("El jugador ya esta en la lista.");
@@ -43,10 +45,56 @@ public class Equipo {
             System.out.println("Jugador insertado con exito.");
         }
     }
+
+    //borrarJugador():
+    public void borrarJugador(String nombre, double estatura) {
+        if (!jugadores.isEmpty()) {
+            Jugador other = new Jugador(nombre, estatura);
+            Predicate<Jugador> condicion = jugador -> jugador.equals(other);
+            jugadores.removeIf(condicion);
+            System.out.println("Jugador eliminado con exito.");
+        } else {
+            System.out.println("La lista esta vacia.");
+        }
+
+    }
+
+    //mostrarJugadores():
+    public void mostrarJugadores() {
+        System.out.println("=========================================");
+        for (Jugador j : jugadores) {
+            System.out.println(j.toString());
+        }
+        System.out.println("=========================================");
+    }
+
+    //jugadorMasAlto():
+    public Jugador jugadorMasAlto() {
+        if (jugadores.isEmpty()) {
+            System.out.println("La lista esta vacia.");
+            return null;
+        } else {
+            return jugadores.last();
+        }
+    }
+
+    //jugadorMasBajo():
+    public Jugador jugadorMasBajo() {
+        if (jugadores.isEmpty()) {
+            System.out.println("La lista esta vacia.");
+            return null;
+        } else {
+            return jugadores.first();
+        }
+    }
     
-    public void borrarJugador(String nombre , double estatura){
-        Jugador other = new Jugador(nombre,estatura);
-        Predicate<Jugador> condicion;
-        
+    //jugadoresMas2Metros():
+    public SortedSet jugadoresMas2Metros(){
+        if (jugadores.isEmpty()){
+            System.out.println("La lista esta vacia.");
+            return null;
+        } else {
+            return jugadores.tailSet(new Jugador("",200));
+        }
     }
 }

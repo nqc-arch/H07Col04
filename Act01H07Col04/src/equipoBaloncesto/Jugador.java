@@ -14,9 +14,10 @@ public class Jugador implements Comparable<Jugador> {
 
     /*ATRIBUTOS*/
     private String nombre;
-    private double estatura;
+    private double estatura; //en cm
 
     /*CONSTRUCTOR*/
+    //la estaura debe estar en cm.
     public Jugador(String nombre, double estatura) {
         this.nombre = nombre;
         this.estatura = estatura;
@@ -81,7 +82,7 @@ public class Jugador implements Comparable<Jugador> {
     /*toString*/
     @Override
     public String toString() {
-        return "Jugador{" + "nombre=" + nombre + ", estatura=" + estatura + "}\n";
+        return "Jugador{" + "nombre=" + nombre + ", estatura=" + estatura + "cm}\n";
     }
 
 }
