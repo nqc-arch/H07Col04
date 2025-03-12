@@ -50,8 +50,9 @@ public class Equipo {
     public void borrarJugador(String nombre, double estatura) {
         if (!jugadores.isEmpty()) {
             Jugador other = new Jugador(nombre, estatura);
-            Predicate<Jugador> condicion = jugador -> jugador.equals(other);
-            jugadores.removeIf(condicion);
+//          El Predicate tiene que ir dentro del removeIf, sino no funciona. 
+//          Predicate<Jugador> condicion = jugador -> jugador.equals(other);
+            jugadores.removeIf(jugador -> jugador.equals(other));
             System.out.println("Jugador eliminado con exito.");
         } else {
             System.out.println("La lista esta vacia.");
@@ -61,11 +62,17 @@ public class Equipo {
 
     //mostrarJugadores():
     public void mostrarJugadores() {
-        System.out.println("=========================================");
-        for (Jugador j : jugadores) {
-            System.out.println(j.toString());
+        if (!jugadores.isEmpty()) {
+            System.out.println("=========================================");
+            for (Jugador j : jugadores) {
+                System.out.println(j.toString());
+            }
+            System.out.println("=========================================");
+        } else {
+            System.out.println("=========================================");
+            System.out.println("La lista esa totalmente vacia.");
+            System.out.println("=========================================");
         }
-        System.out.println("=========================================");
     }
 
     //jugadorMasAlto():
@@ -87,14 +94,14 @@ public class Equipo {
             return jugadores.first();
         }
     }
-    
+
     //jugadoresMas2Metros():
-    public SortedSet jugadoresMas2Metros(){
-        if (jugadores.isEmpty()){
+    public SortedSet jugadoresMas2Metros() {
+        if (jugadores.isEmpty()) {
             System.out.println("La lista esta vacia.");
             return null;
         } else {
-            return jugadores.tailSet(new Jugador("",200));
+            return jugadores.tailSet(new Jugador("", 200));
         }
     }
 }

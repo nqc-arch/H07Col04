@@ -28,8 +28,12 @@ public class Main {
             System.out.println("6 --> Mostrar los jugadores con altura mayor a 2 metros.");
             System.out.println("7 --> Salir.");
             System.out.println("Elije una optcion:");
-            option = sc.nextInt();
-            sc.nextLine();
+            try {
+                option = sc.nextInt();
+                sc.nextLine();
+            } catch (Exception e) {
+                System.out.println("Elige una opcion existente.");
+            }
             switch (option) {
                 case 1:
                     try {
