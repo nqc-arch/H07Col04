@@ -22,6 +22,7 @@ public class Jugador implements Comparable<Jugador> {
         this.nombre = nombre;
         this.estatura = estatura;
     }
+    
 
     /*compareTo*/
     @Override
