@@ -51,13 +51,23 @@ public class Persona implements Comparable<Persona> {
     }
 
     /*COMPARETO*/
+//    @Override
+//    public int compareTo(Persona o) {
+//        int comparacion = this.nombre.compareToIgnoreCase(o.nombre);
+//        if (comparacion == 0) {
+//            return this.apellidos.compareToIgnoreCase(o.apellidos);
+//        }
+//        return comparacion;
+//    }
     @Override
     public int compareTo(Persona o) {
-        int comparacion = this.nombre.compareToIgnoreCase(o.nombre);
-        if (comparacion == 0) {
+        if (this.dni.equalsIgnoreCase(o.dni)) {
+            return 0;
+        } else if (this.nombre.compareToIgnoreCase(o.nombre) == 0) {
             return this.apellidos.compareToIgnoreCase(o.apellidos);
+        } else {
+            return this.nombre.compareToIgnoreCase(o.nombre);
         }
-        return comparacion;
     }
 
     /*EQUALS && HASHCODE*/
@@ -86,7 +96,7 @@ public class Persona implements Comparable<Persona> {
     /*TOSTRING*/
     @Override
     public String toString() {
-        return this.nombre + " " + this.apellidos + "{" + this.dni + "}";
+        return this.nombre + " " + this.apellidos + "{ DNI:" + this.dni + "}";
     }
 
 }
